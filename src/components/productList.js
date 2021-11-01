@@ -33,28 +33,9 @@ class ProductList extends Component {
   render() {
     const productComponents = this.state.products
       .sort((a, b) => b.votes - a.votes)
-      .map(
-        ({
-          id,
-          title,
-          description,
-          url,
-          votes,
-          submitterAvatarUrl,
-          productImageUrl,
-        }) => (
-          <Product
-            id={id}
-            title={title}
-            description={description}
-            url={url}
-            votes={votes}
-            submitterAvatarUrl={submitterAvatarUrl}
-            productImageUrl={productImageUrl}
-            onVote={this.handleProductUpVote}
-          />
-        )
-      );
+      .map((product, index) => (
+        <Product key={index} {...product} onVote={this.handleProductUpVote} />
+      ));
     return <div className="ui unstackable items">{productComponents}</div>;
   }
 }
